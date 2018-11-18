@@ -62,6 +62,7 @@ __webpack_require__.r(__webpack_exports__);
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("iframe", {
     src: "/static/docs/index.html",
     style: {
+      border: 0,
       width: '100%',
       height: '100%'
     }
@@ -89,7 +90,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 5:
+/***/ 7:
 /*!**********************************!*\
   !*** multi ./pages/storybook.js ***!
   \**********************************/
@@ -114,5 +115,5 @@ module.exports = dll_52339ab353c8e0db40da;
 
 /***/ })
 
-},[[5,"static/runtime/webpack.js"]]]));;
+},[[7,"static/runtime/webpack.js"]]]));;
 //# sourceMappingURL=storybook.js.map
