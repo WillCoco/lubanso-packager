@@ -40,8 +40,7 @@ class Uploader extends React.Component {
         </p>
         <Icon type="plus" />
         <p className="ant-upload-text">上传核心库zip</p>
-        <p className="ant-upload-hint">os: run core</p>
-        <p className="ant-upload-hint">windows: run_win core_win</p>
+        <p className="ant-upload-hint">os: run core / windows: run_win core_win</p>
       </Dragger>
     );
   }

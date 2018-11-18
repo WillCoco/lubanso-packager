@@ -68,7 +68,8 @@ const getCommand = (version, platform) => {
 
 const pack = (command, msg) =>
   new Promise((resolve, reject) => {
-    subProcess = spawn("bash");
+    subProcess = spawn('bash');
+    subProcess.title = 'lbspacker';
 
     // 消息监听，监听子进程的输出。并在主进程中打印出来。
     function onData(data) {
@@ -84,14 +85,13 @@ const pack = (command, msg) =>
     subProcess.stdout.on('data', onData);
     subProcess.stderr.on('data', onData);
     subProcess.on('close', (code) => {
-      // subProcess.kill();
       resolve(true);
       console.log(`子进程退出码：${code}`);
     }); // 监听进程退出
     //向子进程发送命令
     subProcess.stdin.write(command[0]);   // 写入数据
     subProcess.stdin.write(command[1]);   // 写入数据
-    // subProcess.stdin.end();
+    subProcess.stdin.end();
   });
 
 const copy = (packPath, targetPath) =>
@@ -136,13 +136,12 @@ function clearOlds(version, platform) {
 
 // 中止打包
 function stopPack() {
-  console.log(subProcess.kill, 'subProcess');
-  subProcess.kill && subProcess.kill('SIGTERM');  // 中止
+  // subProcess.kill();
+  // process.kill(-subProcess.pid, 'SIGKILL')
+  exec(`pkill -9 ${-subProcess.title}`);
+  console.log(subProcess.gid, 'pid')
 }
 
-// console.log(getPackagePath('1.2.0'));
-
-// dopackage('1.2.0', 'windows');
 module.exports = {
   pack: doPack,
   stopPack

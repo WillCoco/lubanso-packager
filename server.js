@@ -9,8 +9,6 @@ const port = parseInt(process.env.PORT, 10) || 3001;
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({dev});
 const handle = app.getRequestHandler();
-let isPackaging;
-let user;
 
 app.prepare()
   .then(() => {
@@ -20,31 +18,48 @@ app.prepare()
     const io = require('socket.io')(hs);
 
     io.on('connection', function(socket){
-      console.log(socket, 'a user connected');
-
       // 打包
       socket.on('pack', async function(data) {
+        // 占用地址
+        const user = getClientIp(socket);
+        io.emit('packingUser', {user});
+
         console.log('user pack');
         const { version } = data;
         console.log(version, 9191919);
         if (version) {
-          const url = await pack(version, (msg) => {
-            io.emit('packMsg', {msg: msg.toString()});
-          });
+          let url;
+          try {
+            url = await pack(version, (msg) => {
+              io.emit('packMsg', {msg: msg.toString()});
+            });
+          } catch (err) {
+            console.log('pack err', err)
+          }
+
           const list = await readDownloadUrls(port);
           console.log(list, url, '打完包');
           if (url) {
             io.emit('pack', {url: `http://localhost:${port}/${url}`, list});
+            io.emit('packingUser', {user: null});
             return;
           }
           io.emit('pack', {succeed: false});
+          io.emit('packingUser', {user: null});
+          return;
         }
+        io.emit('pack', {succeed: false});
+        io.emit('packingUser', {user: null});
       });
 
       // 停止打包
-      socket.on('stopPack', function(msg){
-        stopPack();
-        io.emit('stopPack', msg);
+      socket.on('stopPack', function(){
+        try {
+          stopPack();
+        } catch (err) {
+          console.log('stopPack err', err)
+        }
+        io.emit('stopPack', {succeed: true});
       });
     });
 
@@ -74,6 +89,9 @@ app.prepare()
     });
 
     server.get('*', (req, res) => {
+      res.setHeader("Access-Control-Allow-Origin", "*");
+      res.setHeader("Access-Control-Allow-Headers", "X-Requested-With");
+      res.setHeader("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
       return handle(req, res)
     });
 
@@ -82,3 +100,12 @@ app.prepare()
       console.log(`> Ready on http://localhost:${port}`)
     })
   });
+
+
+let getClientIp = function (s) {
+  const { address } = s.handshake;
+  const { remoteAddress } = s.conn;
+  return (address || remoteAddress).replace('::ffff:', '');
+};
+
+

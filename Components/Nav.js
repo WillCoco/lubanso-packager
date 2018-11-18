@@ -1,4 +1,5 @@
 import React from 'react';
+import Router from 'next/router'
 import { Menu, Icon } from 'antd';
 
 class App extends React.Component {
@@ -11,6 +12,7 @@ class App extends React.Component {
     this.setState({
       current: e.key,
     });
+    Router.push(`/${e.key}`)
   };
 
   render() {
@@ -21,10 +23,10 @@ class App extends React.Component {
         selectedKeys={[this.state.current]}
         mode="horizontal"
       >
-        <Menu.Item key="mail">
+        <Menu.Item key="index">
           <Icon type="packager" />packager
         </Menu.Item>
-        <Menu.Item key="app" disabled>
+        <Menu.Item key="storybook">
           <Icon type="storybook" />storybook
         </Menu.Item>
       </Menu>

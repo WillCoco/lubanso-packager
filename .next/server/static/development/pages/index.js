@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -279,9 +279,9 @@ function (_React$Component) {
 
 /***/ }),
 
-/***/ "./Components/Selecter.js":
+/***/ "./Components/Occupier.js":
 /*!********************************!*\
-  !*** ./Components/Selecter.js ***!
+  !*** ./Components/Occupier.js ***!
   \********************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -290,12 +290,10 @@ function (_React$Component) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! antd */ "antd");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(antd__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var mobx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! mobx */ "mobx");
-/* harmony import */ var mobx__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(mobx__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var mobx_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! mobx-react */ "mobx-react");
-/* harmony import */ var mobx_react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(mobx_react__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! styled-components */ "styled-components");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var mobx_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! mobx-react */ "mobx-react");
+/* harmony import */ var mobx_react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(mobx_react__WEBPACK_IMPORTED_MODULE_2__);
 var _dec, _class;
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -319,16 +317,92 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+var Fixed = styled_components__WEBPACK_IMPORTED_MODULE_1___default.a.div.withConfig({
+  displayName: "Occupier__Fixed",
+  componentId: "y3d3os-0"
+})(["display:flex;justify-content:center;align-items:center;position:fixed;right:80px;bottom:80px;z-index:100;width:200px;height:60px;background-color:rgba(1,1,0,0.5)"]);
+var Uploader = (_dec = Object(mobx_react__WEBPACK_IMPORTED_MODULE_2__["inject"])(function (_ref) {
+  var store = _ref.store;
+  return {
+    occupier: store.occupier
+  };
+}), _dec(_class = Object(mobx_react__WEBPACK_IMPORTED_MODULE_2__["observer"])(_class =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(Uploader, _React$Component);
+
+  function Uploader() {
+    _classCallCheck(this, Uploader);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(Uploader).apply(this, arguments));
+  }
+
+  _createClass(Uploader, [{
+    key: "render",
+    value: function render() {
+      var occupier = this.props.occupier;
+      if (!occupier) return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null);
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Fixed, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        style: {
+          color: '#fff'
+        }
+      }, occupier, " \u6B63\u5728\u6253\u5305..."));
+    }
+  }]);
+
+  return Uploader;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component)) || _class) || _class);
+/* harmony default export */ __webpack_exports__["default"] = (Uploader);
+
+/***/ }),
+
+/***/ "./Components/Selecter.js":
+/*!********************************!*\
+  !*** ./Components/Selecter.js ***!
+  \********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! antd */ "antd");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(antd__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var mobx_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! mobx-react */ "mobx-react");
+/* harmony import */ var mobx_react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(mobx_react__WEBPACK_IMPORTED_MODULE_2__);
+var _dec, _class;
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
 
 var Option = antd__WEBPACK_IMPORTED_MODULE_1__["Select"].Option;
-var DropMenus = (_dec = Object(mobx_react__WEBPACK_IMPORTED_MODULE_3__["inject"])(function (_ref) {
+var DropMenus = (_dec = Object(mobx_react__WEBPACK_IMPORTED_MODULE_2__["inject"])(function (_ref) {
   var store = _ref.store;
   return {
     list: store.availableList,
     current: store.targetVersion,
     updateTargetVersion: store.updateTargetVersion
   };
-}), _dec(_class = Object(mobx_react__WEBPACK_IMPORTED_MODULE_3__["observer"])(_class =
+}), _dec(_class = Object(mobx_react__WEBPACK_IMPORTED_MODULE_2__["observer"])(_class =
 /*#__PURE__*/
 function (_React$Component) {
   _inherits(DropMenus, _React$Component);
@@ -469,7 +543,7 @@ function (_React$Component) {
           height: 200
         },
         title: "\u4E0A\u4F20\u6838\u5FC3\u5E93",
-        description: "\u6CE8\u610F\u540D\u79F0"
+        description: "win: \u5305\u542B'core_win\uFF0Crun_win'\u6587\u4EF6\u7684zip / mac: \u5305\u542B'core\uFF0Crun'\u6587\u4EF6\u7684zip"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Step, {
         style: {
           height: 100
@@ -481,7 +555,7 @@ function (_React$Component) {
           height: 200
         },
         title: "\u6253\u5305\u4E2D",
-        description: "\u8981\u4E00\u4F1A\uFF0C\u4E4B\u540E\u52A0\u4E0A\u5B9E\u65F6\u63A8\u9001\u6253\u5305\u65E5\u5FD7\uFF0C\u4FBF\u4E8E\u89C2\u5BDF\u8FC7\u7A0B"
+        description: ""
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Step, {
         style: {
           height: 100
@@ -600,9 +674,7 @@ function (_React$Component) {
         className: "ant-upload-text"
       }, "\u4E0A\u4F20\u6838\u5FC3\u5E93zip"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "ant-upload-hint"
-      }, "os: run core"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-        className: "ant-upload-hint"
-      }, "windows: run_win core_win"));
+      }, "os: run core / windows: run_win core_win"));
     }
   }]);
 
@@ -636,6 +708,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Components_History__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../Components/History */ "./Components/History.js");
 /* harmony import */ var _Components_Steper__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../Components/Steper */ "./Components/Steper.js");
 /* harmony import */ var _Components_MSGScreen__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../Components/MSGScreen */ "./Components/MSGScreen.js");
+/* harmony import */ var _Components_Occupier__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../Components/Occupier */ "./Components/Occupier.js");
 var _dec, _class;
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -666,7 +739,9 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
-var socket = socket_io_client__WEBPACK_IMPORTED_MODULE_1___default()('http://localhost:3001');
+
+var socket = socket_io_client__WEBPACK_IMPORTED_MODULE_1___default()('http://192.168.31.33:3001');
+console.log(socket);
 var Row = styled_components__WEBPACK_IMPORTED_MODULE_3___default.a.div.withConfig({
   displayName: "pages__Row",
   componentId: "sc-1o92slr-0"
@@ -688,7 +763,9 @@ var Packager = (_dec = Object(mobx_react__WEBPACK_IMPORTED_MODULE_4__["inject"])
     targetUrl: store.targetUrl,
     updateTargetUrl: store.updateTargetUrl,
     updateStepStatus: store.updateStepStatus,
-    addPackMsg: store.addPackMsg
+    addPackMsg: store.addPackMsg,
+    occupier: store.occupier,
+    updateOccupier: store.updateOccupier
   };
 }), _dec(_class = Object(mobx_react__WEBPACK_IMPORTED_MODULE_4__["observer"])(_class =
 /*#__PURE__*/
@@ -726,7 +803,8 @@ function (_React$Component) {
     };
 
     _this.stopPack = function () {
-      socket.emit('stopPack');
+      // socket.emit('stopPack');
+      alert('bash 打包命令中止不了，帮我修复一哈，https://github.com/WillCoco/lubanso-packager');
     };
 
     return _this;
@@ -762,6 +840,18 @@ function (_React$Component) {
         console.log(data.msg, 'packMsg');
 
         _this2.props.addPackMsg(data.msg);
+      }); // 打包占用
+
+      socket.on('packingUser', function (data) {
+        console.log(data.user, 'packingUser');
+
+        _this2.props.updateOccupier(data.user);
+      }); // 中止打包
+
+      socket.on('stopPack', function (data) {
+        if (data.succeed) {
+          updateStep(2);
+        }
       }); // 获取可打包项
 
       fetch("".concat(basicUrl, "/getAvailable")).then(function (res) {
@@ -779,12 +869,14 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var step = this.props.step;
+      var _this$props3 = this.props,
+          step = _this$props3.step,
+          occupier = _this$props3.occupier;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         style: {
           padding: 100
         }
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Row, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Components_Steper__WEBPACK_IMPORTED_MODULE_8__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(PackContent, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Components_Selecter__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Components_Occupier__WEBPACK_IMPORTED_MODULE_10__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Row, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Components_Steper__WEBPACK_IMPORTED_MODULE_8__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(PackContent, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Components_Selecter__WEBPACK_IMPORTED_MODULE_5__["default"], {
         style: {
           height: 100
         }
@@ -798,7 +890,7 @@ function (_React$Component) {
           height: 100
         }
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_2__["Button"], {
-        disabled: step === 3,
+        disabled: step === 3 || !!occupier,
         type: "primary",
         size: "large",
         onClick: this.pack,
@@ -837,7 +929,7 @@ function (_React$Component) {
 
 /***/ }),
 
-/***/ 3:
+/***/ 4:
 /*!******************************!*\
   !*** multi ./pages/index.js ***!
   \******************************/
@@ -857,17 +949,6 @@ module.exports = __webpack_require__(/*! ./pages/index.js */"./pages/index.js");
 /***/ (function(module, exports) {
 
 module.exports = require("antd");
-
-/***/ }),
-
-/***/ "mobx":
-/*!***********************!*\
-  !*** external "mobx" ***!
-  \***********************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = require("mobx");
 
 /***/ }),
 

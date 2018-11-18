@@ -7,7 +7,7 @@ useStaticRendering(isServer);
 class Store {
   id = Math.random();
 
-  basicUrl = 'http://localhost:3001';
+  basicUrl = 'http://192.168.31.33:3001';
 
   // 可用版本
   @observable availableList = [1,2];
@@ -40,6 +40,12 @@ class Store {
   @observable urls = [];
   @action updateUrls(list) {
     store.urls = list;
+  }
+
+  // 占用者信息
+  @observable occupier = '';
+  @action updateOccupier(occupier) {
+    store.occupier = occupier;
   }
 
   // step

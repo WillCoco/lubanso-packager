@@ -1,6 +1,5 @@
 import React from 'react';
 import { Select } from 'antd';
-import { observable } from "mobx";
 import { inject, observer } from "mobx-react";
 
 const Option = Select.Option;
