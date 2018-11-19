@@ -4,7 +4,7 @@ const http = require('http');
 const { pack, stopPack } = require('./package');
 const { readAvailableVersions, readDownloadUrls } = require('./utils/readFile');
 const { saveFile, upload } = require('./utils/saveFile');
-const { basicUrl } = require('./package');
+const { basicUrl } = require('./package.json');
 
 const port = parseInt(process.env.PORT, 10) || 3001;
 const dev = process.env.NODE_ENV !== 'production';

@@ -9,7 +9,7 @@ import History from '../Components/History';
 import Steper from '../Components/Steper';
 import MSGScreen from '../Components/MSGScreen';
 import Occupier from '../Components/Occupier';
-import { basicUrl } from '../package';
+import { basicUrl } from '../package.json';
 
 
 const socket = socketIo(basicUrl);
