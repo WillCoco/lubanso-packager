@@ -4,6 +4,7 @@ const http = require('http');
 const { pack, stopPack } = require('./package');
 const { readAvailableVersions, readDownloadUrls } = require('./utils/readFile');
 const { saveFile, upload } = require('./utils/saveFile');
+const { basicUrl } = require('./package');
 
 const port = parseInt(process.env.PORT, 10) || 3001;
 const dev = process.env.NODE_ENV !== 'production';
@@ -40,7 +41,7 @@ app.prepare()
           const list = await readDownloadUrls(port);
           console.log(list, url, '打完包');
           if (url) {
-            io.emit('pack', {url: `http://localhost:${port}/${url}`, list});
+            io.emit('pack', {url: `${basicUrl}/${url}`, list});
             io.emit('packingUser', {user: null});
             return;
           }

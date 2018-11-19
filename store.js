@@ -7,8 +7,6 @@ useStaticRendering(isServer);
 class Store {
   id = Math.random();
 
-  basicUrl = 'http://127.0.0.1:3001';
-
   // 可用版本
   @observable availableList = ['获取中..'];
   @action updateAvailableList(list) {

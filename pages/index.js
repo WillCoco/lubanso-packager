@@ -9,8 +9,9 @@ import History from '../Components/History';
 import Steper from '../Components/Steper';
 import MSGScreen from '../Components/MSGScreen';
 import Occupier from '../Components/Occupier';
+import { basicUrl } from '../package';
 
-const socket = socketIo('http://127.0.0.1:3001');
+const socket = socketIo(basicUrl);
 
 const Row = styled.div`
   display: flex;
@@ -26,7 +27,6 @@ const PackContent = styled.div`
 
 @inject(({store}) => {
   return ({
-    basicUrl: store.basicUrl,
     updateAvailableList: store.updateAvailableList,
     updateUrls: store.updateUrls,
     step: store.step,
@@ -49,7 +49,7 @@ const PackContent = styled.div`
   };
 
   componentDidMount() {
-    const { basicUrl, updateStep, updateTargetUrl, updateUrls, updateStepStatus } = this.props;
+    const { updateStep, updateTargetUrl, updateUrls, updateStepStatus } = this.props;
 
     // 开始打包
     socket.on('pack', (res) => {
