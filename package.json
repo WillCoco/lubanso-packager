@@ -30,7 +30,8 @@
     "eject": "react-scripts eject",
     "dev": "node server.js",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "server": "NODE_ENV=production pm2 start ./server.js"
   },
   "eslintConfig": {
     "extends": "react-app"
