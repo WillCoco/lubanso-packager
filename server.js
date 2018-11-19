@@ -10,6 +10,7 @@ const port = parseInt(process.env.PORT, 10) || 3001;
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({dev});
 const handle = app.getRequestHandler();
+let occupier;
 
 app.prepare()
   .then(() => {
@@ -19,15 +20,21 @@ app.prepare()
     const io = require('socket.io')(hs);
 
     io.on('connection', function(socket){
+      io.emit('packingUser', {user: occupier});
+
       // 打包
       socket.on('pack', async function(data) {
-        // 占用地址
-        const user = getClientIp(socket);
-        io.emit('packingUser', {user});
 
-        console.log('user pack');
+        // 占用地址
+        if (occupier) {
+          io.emit('packingUser', {user: occupier});
+          return;
+        }
+
+        occupier = getClientIp(socket);
+        io.emit('packingUser', {user: occupier});
+
         const { version } = data;
-        console.log(version, 9191919);
         if (version) {
           let url;
           try {
@@ -43,14 +50,17 @@ app.prepare()
           if (url) {
             io.emit('pack', {url: `${basicUrl}/${url}`, list});
             io.emit('packingUser', {user: null});
+            occupier = null;
             return;
           }
           io.emit('pack', {succeed: false});
           io.emit('packingUser', {user: null});
+          occupier = null;
           return;
         }
         io.emit('pack', {succeed: false});
         io.emit('packingUser', {user: null});
+        occupier = null;
       });
 
       // 停止打包
