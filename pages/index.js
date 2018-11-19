@@ -10,7 +10,7 @@ import Steper from '../Components/Steper';
 import MSGScreen from '../Components/MSGScreen';
 import Occupier from '../Components/Occupier';
 
-const socket = socketIo('http://10.10.0.84:3001');
+const socket = socketIo('http://127.0.0.1:3001');
 
 const Row = styled.div`
   display: flex;
