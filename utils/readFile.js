@@ -9,7 +9,14 @@ const readAvailableVersions = () =>
       }
 
       if (data instanceof Array) {
-        resolve(data.filter(d => /^\d.\d.\d$/.test(d)));
+        const arr = data.filter(d => /^\d.\d.\d$/.test(d));
+        arr.sort((a, b) => {
+          const aNumber = a.replace(/[.]/g, '');
+          const bNumber = b.replace(/[.]/g, '');
+
+          return bNumber - aNumber
+        });
+        resolve(arr);
       }
     });
   });
