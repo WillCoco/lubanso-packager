@@ -14,7 +14,7 @@ const Dragger = Upload.Dragger;
 @observer
 class Uploader extends React.Component {
   render() {
-    const { basicUrl, targetVersion, availableList, style } = this.props;
+    const { targetVersion, availableList, style } = this.props;
     const props = {
       name: 'file',
       multiple: true,
