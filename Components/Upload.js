@@ -1,11 +1,11 @@
 import React from 'react';
 import { Upload, Icon, message } from 'antd';
 import {inject, observer} from "mobx-react";
+import {basicUrl} from "../package.json";
 
 const Dragger = Upload.Dragger;
 
 @inject(({store}) => ({
-  basicUrl: store.basicUrl,
   targetVersion: store.targetVersion,
   availableList: store.availableList,
   updateStep: store.updateStep
