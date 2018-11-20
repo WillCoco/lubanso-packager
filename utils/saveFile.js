@@ -1,7 +1,7 @@
 const multer = require('multer');
 const path = require('path');
 const fs = require("fs");
-const unzip = require("unzip");
+const unzipper = require("unzipper");
 const { exec } = require("child_process");
 
 const saveFile = (req) =>
@@ -30,7 +30,7 @@ const saveFile = (req) =>
       });
     });
 
-    pp.pipe(unzip.Extract({ path: dir }));
+    pp.pipe(unzipper.Extract({ path: dir }));
   });
 
 

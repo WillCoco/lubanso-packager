@@ -1,7 +1,7 @@
 {
   "name": "lubanso-packager",
   "version": "0.1.0",
-  "basicUrl": "http://10.10.0.84:3001",
+  "basicUrl": "http://localhost:3001",
   "private": true,
   "dependencies": {
     "@zeit/next-css": "^1.0.1",
@@ -20,7 +20,7 @@
     "socket.io": "^2.1.1",
     "socket.io-client": "^2.1.1",
     "styled-components": "^4.1.1",
-    "unzip": "^0.1.11"
+    "unzipper": "^0.9.4"
   },
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "^7.1.0",
