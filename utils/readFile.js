@@ -1,5 +1,7 @@
 const fs = require('fs');
 const path = require('path');
+const { basicUrl } = require('../package.json');
+console.log(basicUrl, 'basicUrl')
 
 const readAvailableVersions = () =>
   new Promise((resolve, reject) => {
@@ -30,7 +32,7 @@ const readDownloadUrls = (port) =>
 
       if (data instanceof Array) {
         const d = data.filter(d => /\d.\d.\d.(exe)$|\d.\d.\d.(dmg)$/.test(d));
-        resolve(d.map(name => ({name, url: `http://localhost:${port}/static/output/${name}`})));
+        resolve(d.map(name => ({name, url: `${basicUrl}/static/output/${name}`})));
       }
     });
   });
