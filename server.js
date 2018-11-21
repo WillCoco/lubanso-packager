@@ -5,6 +5,7 @@ const { pack, stopPack } = require('./package');
 const { readAvailableVersions, readDownloadUrls } = require('./utils/readFile');
 const { saveFile, upload } = require('./utils/saveFile');
 const { basicUrl } = require('./package.json');
+const { Log } = require('./Log');
 
 const port = parseInt(process.env.PORT, 10) || 3001;
 const dev = process.env.NODE_ENV !== 'production';
@@ -77,7 +78,7 @@ app.prepare()
     // 获取可打包项
     server.get('/getAvailable', async (req, res) => {
       const list = await readAvailableVersions();
-      console.log(list, this, '可打包项');
+      Log.info('可打包项');
       res.send(list);
     });
 

@@ -106,12 +106,16 @@ const copy = (packPath, targetPath) =>
     });
 
     p.on('error', (data) => {
-      console.log(`error: ${data}`)
+      console.log(`error: ${data}`);
+      reject();
     });
 
     p.on('close', (code) => {
       console.log(`子进程退出码：${code}`);
-      resolve(true);
+      if (code === 0) {
+        resolve(true);
+      }
+      reject();
     });
     // exec(`cp -f ${packPath} ${targetPath}`, (err) => {
     //   if (err) {

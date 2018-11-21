@@ -8,17 +8,24 @@ const Dragger = Upload.Dragger;
 @inject(({store}) => ({
   targetVersion: store.targetVersion,
   availableList: store.availableList,
-  updateStep: store.updateStep
+  updateStep: store.updateStep,
+  occupier: store.occupier
 }))
 
 @observer
 class Uploader extends React.Component {
   render() {
-    const { targetVersion, availableList, style } = this.props;
+    const { targetVersion, availableList, occupier, style } = this.props;
     const props = {
       name: 'file',
       multiple: true,
       action: `${basicUrl}/uploadCore?version=${targetVersion || availableList[0]}`,
+      beforeUpload: () => {
+        if (!!occupier) {
+          alert(`${occupier}正在打包，请稍后操作`)
+        }
+        return !occupier;
+      },
       onChange: (info) => {
         const status = info.file.status;
         if (status !== 'uploading') {
