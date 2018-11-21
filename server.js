@@ -43,11 +43,11 @@ app.prepare()
               io.emit('packMsg', {msg: msg.toString()});
             });
           } catch (err) {
-            console.log('pack err', err)
+            Log.error('pack err', err);
           }
 
           const list = await readDownloadUrls(port);
-          console.log(list, url, '打完包');
+          Log.info(list, url, '打完包');
           if (url) {
             io.emit('pack', {url: `${basicUrl}/${url}`, list});
             io.emit('packingUser', {user: null});
@@ -69,7 +69,7 @@ app.prepare()
         try {
           stopPack();
         } catch (err) {
-          console.log('stopPack err', err)
+          Log.error('stopPack err', err);
         }
         io.emit('stopPack', {succeed: true});
       });
@@ -85,7 +85,7 @@ app.prepare()
     // 获取可下载项
     server.get('/getUrls', async (req, res) => {
       const list = await readDownloadUrls(port);
-      console.log(list, '可下载项');
+      Log.info('可下载项', list);
       res.send(list);
     });
 
@@ -93,7 +93,7 @@ app.prepare()
     server.post('/uploadCore', (req, res) => {
       upload(req, res, async (err) => {
         if (err) {
-          console.log(err, '上传err')
+          Log.error('上传err', err);
         }
         await saveFile(req, res);
         res.send({succeed: true});
@@ -109,7 +109,7 @@ app.prepare()
 
     hs.listen(port, (err) => {
       if (err) throw err;
-      console.log(`> Ready on http://localhost:${port}`)
+      Log.info(`> Ready on http://localhost:${port}`)
     })
   });
 

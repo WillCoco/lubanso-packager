@@ -25,7 +25,6 @@ log4js.configure({
 
 const Log = log4js.getLogger('pack');
 
-Log.info('tetettet');
 module.exports = {
   Log
 };

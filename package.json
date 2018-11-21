@@ -1,7 +1,7 @@
 {
   "name": "lubanso-packager",
   "version": "0.1.0",
-  "basicUrl": "http://localhost:3001",
+  "basicUrl": "http://10.10.0.84:3001",
   "private": true,
   "dependencies": {
     "@zeit/next-css": "^1.0.1",

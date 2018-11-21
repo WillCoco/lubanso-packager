@@ -3,6 +3,7 @@ const path = require('path');
 const fs = require("fs");
 const unzipper = require("unzipper");
 const { exec } = require("child_process");
+const { Log } = require("../Log");
 
 const saveFile = (req) =>
   new Promise((resolve, reject) => {
@@ -39,7 +40,7 @@ const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     const { version } = req.query;
     const dir = path.join(__dirname, '../lubanso', version, 'app/pyserver/');
-    console.log(dir, 'version111');
+    Log.info(dir, 'storage dir');
     // 清空
     deleteFolder(dir);
     // 重建

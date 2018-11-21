@@ -1,7 +1,6 @@
 const fs = require('fs');
 const path = require('path');
 const { basicUrl } = require('../package.json');
-console.log(basicUrl, 'basicUrl')
 
 const readAvailableVersions = () =>
   new Promise((resolve, reject) => {
@@ -23,7 +22,7 @@ const readAvailableVersions = () =>
     });
   });
 
-const readDownloadUrls = (port) =>
+const readDownloadUrls = () =>
   new Promise((resolve, reject) => {
     fs.readdir(path.join(__dirname, '../static/output/'), (err, data) => {
       if (err) {
