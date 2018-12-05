@@ -4,8 +4,18 @@ import { Menu, Icon } from 'antd';
 
 class App extends React.Component {
   state = {
-    current: 'mail',
+    current: '',
   };
+
+  componentDidMount() {
+    const current = Router.route.replace('/', '');
+    setTimeout(() => {
+      this.setState({
+        current: current || 'index'
+      })
+    }, 0)
+
+  }
 
   handleClick = (e) => {
     console.log('click ', e);
