@@ -8,7 +8,7 @@ class Store {
   id = Math.random();
 
   // 可用版本
-  @observable availableList = ['获取中..'];
+  @observable availableList = [];
   @action updateAvailableList(list) {
     store.availableList = list;
   }
@@ -55,6 +55,11 @@ class Store {
   @observable stepStatus = 'finish';
   @action updateStepStatus(v) {
     store.stepStatus = v;
+  }
+
+  @observable corePlatform;
+  @action updateCorePlatform(v) {
+    store.corePlatform = v;
   }
 }
 

@@ -3,7 +3,7 @@ const next = require('next');
 const http = require('http');
 const { pack, stopPack } = require('./package');
 const { readAvailableVersions, readDownloadUrls } = require('./utils/readFile');
-const { saveFile, upload } = require('./utils/saveFile');
+const { saveFile, upload, getCorePlatform } = require('./utils/saveFile');
 const { basicUrl } = require('./package.json');
 const { Log } = require('./Log');
 
@@ -73,6 +73,17 @@ app.prepare()
         }
         io.emit('stopPack', {succeed: true});
       });
+
+      // 获取core platform
+      socket.on('getCorePlatform', async function(data){
+        let platform;
+        try {
+          platform = await getCorePlatform(data.version);
+        } catch (err) {
+          Log.error('getCorePlatForm err', err);
+        }
+        io.emit('changeCorePlatform', {platform});
+      });
     });
 
     // 获取可打包项
@@ -95,8 +106,8 @@ app.prepare()
         if (err) {
           Log.error('上传err', err);
         }
-        await saveFile(req, res);
-        res.send({succeed: true});
+        const platform = await saveFile(req, res);
+        res.send({succeed: true, platform});
       });
     });
 

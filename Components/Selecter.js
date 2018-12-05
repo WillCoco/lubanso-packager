@@ -14,7 +14,8 @@ const Option = Select.Option;
 @observer
 class DropMenus extends React.Component {
   onClick = (e) => {
-    this.props.updateTargetVersion(e)
+    this.props.updateTargetVersion(e);
+    this.props.onSelected(e);
   };
 
   render() {

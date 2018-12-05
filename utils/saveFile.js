@@ -4,6 +4,26 @@ const fs = require("fs");
 const unzipper = require("unzipper");
 const { exec } = require("child_process");
 const { Log } = require("../Log");
+const { readAvailableVersions } = require('./readFile');
+
+// 获取核心库平台
+const getCorePlatform = (v) =>
+  new Promise(async (resolve, reject) => {
+    const availableVersions = await readAvailableVersions() || [];
+    const version = v || (availableVersions.length > 0 && availableVersions[0]);
+    const dir = path.join(__dirname, '../lubanso', version, 'app/pyserver/');
+    let files;
+    try {
+      files = fs.readdirSync(dir);
+    } catch (err) {
+      reject('读取core目录失败')
+    }
+    if (files[0]) {
+      resolve(files[0].match('win') ? 'windows' : 'os')
+    } else {
+      reject('读取core目录失败')
+    }
+  });
 
 const saveFile = (req) =>
   new Promise((resolve, reject) => {
@@ -24,11 +44,12 @@ const saveFile = (req) =>
         exec(`chmod +x ${path.join(dir, file)}`, (err) => {
           if (err) {
             reject();
-            return;
           }
-          resolve();
         })
       });
+      const corePlatform = filesUnziped[0].match('win') ? 'windows' : 'os';
+      Log.info(filesUnziped[0], 'filesUnziped');
+      resolve(corePlatform);
     });
 
     pp.pipe(unzipper.Extract({ path: dir }));
@@ -72,5 +93,6 @@ function deleteFolder(path) {
 
 module.exports = {
   upload,
-  saveFile
+  saveFile,
+  getCorePlatform
 };

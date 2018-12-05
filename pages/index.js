@@ -41,6 +41,7 @@ const PackContent = styled.div`
     addPackMsg: store.addPackMsg,
     occupier: store.occupier,
     updateOccupier: store.updateOccupier,
+    updateCorePlatform: store.updateCorePlatform,
   })
 })
 
@@ -51,7 +52,13 @@ const PackContent = styled.div`
   };
 
   componentDidMount() {
-    const { updateStep, updateTargetUrl, updateUrls, updateStepStatus } = this.props;
+    const { updateStep, updateTargetUrl, updateUrls, updateStepStatus, targetVersion } = this.props;
+
+    // 核心库platform改变
+    socket.on('changeCorePlatform', (data) => {
+      console.log(data.platform, '收到 changeCorePlatform');
+      this.props.updateCorePlatform(data.platform)
+    });
 
     // 开始打包
     socket.on('pack', (res) => {
@@ -89,7 +96,8 @@ const PackContent = styled.div`
     fetch(`${basicUrl}/getAvailable`)
       .then(res => res.json())
       .then(res => {
-        this.props.updateAvailableList(res)
+        this.props.updateAvailableList(res);
+        socket.emit('getCorePlatform', {version: targetVersion || res[0]});
       });
 
     // 获取可下载项目
@@ -104,12 +112,17 @@ const PackContent = styled.div`
     const { updateStep, availableList, targetVersion, updateStepStatus } = this.props;
     updateStep(3);
     updateStepStatus('process');
-    socket.emit('pack', {version: targetVersion || availableList[0]});
+    socket.emit('pack', {version: targetVersion || (availableList.length > 0 && availableList[0])});
   };
 
   stopPack = () => {
     // socket.emit('stopPack');
     alert('bash 打包命令中止不了，帮我修复一哈，https://github.com/WillCoco/lubanso-packager')
+  };
+
+  onSelected = (v) => {
+    const { targetVersion, availableList } = this.props;
+    socket.emit('getCorePlatform', {version: v || targetVersion || (availableList.length > 0 && availableList[0])});
   };
 
   render() {
@@ -118,9 +131,9 @@ const PackContent = styled.div`
       <div style={{padding: 100}}>
         <Occupier />
         <Row>
-          <Steper />
+          <Steper/>
           <PackContent>
-            <Selecter style={{height: 100}} />
+            <Selecter onSelected={this.onSelected}  style={{height: 100}} />
             <Uploader style={{height: 200}} />
             <div className="centerRow" style={{height: 100}}>
               <Button disabled={(step === 3 || !!occupier)} type="primary" size="large" onClick={this.pack} style={{marginRight: 30}}>
