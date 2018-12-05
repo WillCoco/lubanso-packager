@@ -27,4 +27,5 @@ yarn-error.log*
 /static/output/
 /static/docs/
 /lubanso
+/Log
 .next/
