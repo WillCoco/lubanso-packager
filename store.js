@@ -61,6 +61,11 @@ class Store {
   @action updateCorePlatform(v) {
     store.corePlatform = v;
   }
+
+  @observable crashInfoList = [];
+  @action updateCrashInfoList(v) {
+    store.crashInfoList = v;
+  }
 }
 
 

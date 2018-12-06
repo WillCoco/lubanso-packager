@@ -4,8 +4,9 @@ const http = require('http');
 const { pack, stopPack } = require('./package');
 const { readAvailableVersions, readDownloadUrls } = require('./utils/readFile');
 const { saveFile, upload, getCorePlatform } = require('./utils/saveFile');
+const { readCrashInfo } = require('./utils/readCrashInfo');
 const { basicUrl } = require('./package.json');
-const { Log } = require('./Log');
+const { Log, LogLBS } = require('./Log');
 
 const port = parseInt(process.env.PORT, 10) || 3001;
 const dev = process.env.NODE_ENV !== 'production';
@@ -84,6 +85,19 @@ app.prepare()
         }
         io.emit('changeCorePlatform', {platform});
       });
+
+      // 获取lubanso崩溃信息
+      socket.on('lubansoCrash', async function(data){
+        console.log(data, 'lubanso crash');
+        LogLBS.error('lubanso crash error', data.error);
+        LogLBS.error('lubanso crash info', data.info);
+      });
+
+      // 读取crashInfo
+      socket.on('getCrashInfo', async function() {
+        const info = await readCrashInfo();
+        socket.emit('getCrashInfo', {info})
+      })
     });
 
     // 获取可打包项

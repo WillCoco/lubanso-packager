@@ -13,18 +13,25 @@ log4js.configure({
       type: 'file',
       filename: path.join(__dirname, 'packager-warn.log'),
       pattern: "-yyyy-MM-dd"
+    },
+    fileLBS: {
+      type: 'file',
+      filename: path.join(__dirname, 'lubanso-crash.log'),
+      pattern: "-yyyy-MM-dd"
     }
   },
   categories: {
     default: { appenders: [ 'file', 'stdout' ], level: 'INFO' },
-    // pack: {}
+    crash: { appenders: [ 'fileLBS', 'stdout' ], level: 'INFO' }
   },
   pm2: true
 });
 
 
-const Log = log4js.getLogger('pack');
+const Log = log4js.getLogger();
+const LogLBS = log4js.getLogger('crash');
 
 module.exports = {
-  Log
+  Log,
+  LogLBS
 };

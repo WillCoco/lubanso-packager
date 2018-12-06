@@ -1,5 +1,4 @@
 import React from 'react';
-import socketIo from 'socket.io-client';
 import { Button } from 'antd';
 import styled from 'styled-components';
 import { inject, observer } from "mobx-react";
@@ -10,10 +9,7 @@ import Steper from '../Components/Steper';
 import MSGScreen from '../Components/MSGScreen';
 import Occupier from '../Components/Occupier';
 import { basicUrl } from '../package.json';
-
-
-const socket = socketIo(basicUrl);
-
+import socket from './socket';
 
 const Row = styled.div`
   display: flex;

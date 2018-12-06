@@ -39,6 +39,9 @@ class App extends React.Component {
         <Menu.Item key="storybook">
           <Icon type="storybook" />storybook
         </Menu.Item>
+        <Menu.Item key="crashInfo">
+          <Icon type="crashInfo" />crashInfo
+        </Menu.Item>
       </Menu>
     );
   }
