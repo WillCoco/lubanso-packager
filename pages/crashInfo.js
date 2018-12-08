@@ -45,7 +45,7 @@ const HR = styled.hr`
             const arr = d.split('[ERROR]');
             return [
               <Time style={{marginBottom: 8}} key={`crash_${i}`}>{arr[0]}</Time>,
-              <T style={{marginBottom: 8}} key={`crash_info_${i}`}>{arr[1]}</T>,
+              <T key={`crash_info_${i}`}>{arr[1]}</T>,
               <P key={`crash_info_${i}`}>{arr[2]}</P>,
               <HR />
             ]

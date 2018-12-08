@@ -91,6 +91,7 @@ app.prepare()
         console.log(data, 'lubanso crash');
         LogLBS.error('lubanso crash error', data.error);
         LogLBS.error('lubanso crash info', data.info);
+        LogLBS.error('<<<');
       });
 
       // 读取crashInfo
